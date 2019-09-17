@@ -1,0 +1,115 @@
+<style>
+    #time {
+        text-align: center;
+        color: black;
+        font-size: 30px;
+        margin-top: 25px;
+    }
+    #time span{
+        display: inline-block;
+        width: 50px;
+        margin: 10px;
+        text-align: left;
+    }
+  .level{
+    text-align: center;
+    margin-top: 25px;
+    color: black
+  }
+  .tile{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .hint_h{
+    background-color: gainsboro;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 5px;
+  }
+  .hint_h .row{
+    text-align: right;
+  }
+  .hint_h .tile{
+    width: 20px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .hint_v{
+    background-color: gainsboro;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-top: 5px;
+  }
+  .hint_v .row{
+    display: inline-block;
+  }
+  .hint_v .tile{
+    display: block;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .answer .tile{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .tile p{
+    margin: 0;
+  }
+    #declaration {
+        text-align: center;
+        color: black;
+        font-size: 50px;
+        height: 50px;
+        margin-top: 50px;
+    }
+</style>
+
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Level {{global.level}} - {{level.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+    <!-- DEBUG -->
+    <!--<div>Progress : {{right}} / {{level.answer_n}}</div>
+    <div>X : {{wrong}}</div>-->
+    <div id="time"><img src="/../assets/icon/time.png" style="height: 30px; width: auto; padding-top: 7px;" /><span>{{timer}}</span></div>
+    <div class="level">
+        <div class="hint_h" style="display: inline-block">
+            <div class="row" *ngFor="let row of level.hint_h; let i = index">
+                <div class="tile" *ngFor="let num of row; let j = index">
+                    <p>{{num}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: inline-block">
+            <div class="hint_v">
+                <div class="row" *ngFor="let row of level.hint_v; let i = index">
+                    <div class="tile" *ngFor="let num of row; let j = index">
+                        <p>{{num}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="answer">
+                <div class="row" *ngFor="let row of level.layout; let i = index">
+                    <div class="tile" [style.background-color]="level.layout[i][j] ? (level.layout[i][j] == 1   ? 'black' : 'yellow') : 'white'" *ngFor="let tile of row; let j = index" (click)="check(i, j)">
+                        <!-- <p>{{tile}}</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="declaration">
+        <div *ngIf=win>YOU WIN!!!</div>
+        <div *ngIf=lose>YOU LOSE!!!</div>
+    </div>
+    <ion-button *ngIf="win == true && max == false" style="max-width: 60%; margin: auto; margin-top: 75px;" expand="block" (click)="next()" routerDirection="back" color="secondary">Next >></ion-button>
+    <ion-button style="max-width: 60%; margin: auto; margin-top: 75px; margin-bottom: 75px;" expand="block" routerLink="/home" routerDirection="back" color="secondary"><< Back</ion-button>
+</ion-content>

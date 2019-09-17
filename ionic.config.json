@@ -1,0 +1,7 @@
+{
+  "name": "Picross",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

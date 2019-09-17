@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\home",
+    "\\src\\app\\play",
+    "\\src\\assets",
+    "\\src\\assets\\icon",
+    "\\src\\environments",
+    "\\src\\theme"
+  ],
+  "SelectedNode": "\\src\\app\\level.ts",
+  "PreviewInSolutionExplorer": false
+}
